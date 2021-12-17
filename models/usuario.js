@@ -32,4 +32,10 @@ const usuarioSchema = Schema({
   },
 });
 
+// susbcribimos el usuario para evitar mostrar esta informacion
+usuarioSchema.methods.toJSON = function(){
+  const{__v, password, ...usuario} = this.toObject();
+  return usuario;
+}
+
 module.exports = model("Usuario", usuarioSchema);
